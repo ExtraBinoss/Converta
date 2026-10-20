@@ -1,0 +1,9 @@
+{
+  "name": "@converta/web",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@converta/core": "workspace:*",
+    "cn": "^0.5.0"
+  }
+}

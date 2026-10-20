@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fbfbfd" />
+    <meta
+      name="description"
+      content="Convertissez vos images, vidéos et fichiers audio directement sur votre appareil."
+    />
+    <title>Converta — Plinka</title>
+    <link rel="canonical" href="https://converta.plinka.eu/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Converta" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:url" content="https://converta.plinka.eu/" />
+    <meta property="og:title" content="Converta — Un fichier. Un nouveau format." />
+    <meta
+      property="og:description"
+      content="Images, vidéos et audio. Convertissez vos fichiers localement, dans votre navigateur."
+    />
+    <meta property="og:image" content="https://converta.plinka.eu/social/converta.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Converta : une image, une vidéo et un fichier audio convertis dans le navigateur, avec leurs aperçus et formats de sortie."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Converta — Un fichier. Un nouveau format." />
+    <meta
+      name="twitter:description"
+      content="Images, vidéos et audio. Convertissez vos fichiers localement, dans votre navigateur."
+    />
+    <meta name="twitter:image" content="https://converta.plinka.eu/social/converta.png" />
+    <meta
+      name="twitter:image:alt"
+      content="Converta : une image, une vidéo et un fichier audio convertis dans le navigateur, avec leurs aperçus et formats de sortie."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      html {
+        background: #fbfbfd;
+        color-scheme: light;
+      }
+      html.dark {
+        background: #1c1c1e;
+        color-scheme: dark;
+      }
+    </style>
+    <script>
+      (() => {
+        let theme = "system";
+        try {
+          theme = localStorage.getItem("converta.theme") || "system";
+        } catch {}
+        document.documentElement.classList.toggle(
+          "dark",
+          theme === "dark" ||
+            (theme !== "light" && matchMedia("(prefers-color-scheme: dark)").matches),
+        );
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

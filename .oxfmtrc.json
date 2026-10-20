@@ -1,0 +1,16 @@
+{
+  "printWidth": 100,
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": false,
+  "sortImports": false,
+  "sortTailwindcss": false,
+  "sortPackageJson": false,
+  "ignorePatterns": [
+    "dist/**",
+    "coverage/**",
+    "artifacts/**",
+    "apps/web/public/engines/**",
+    "bun.lock"
+  ]
+}

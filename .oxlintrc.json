@@ -1,0 +1,34 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc"],
+  "categories": { "correctness": "error" },
+  "options": { "typeAware": true, "maxWarnings": 0 },
+  "rules": {
+    "typescript/no-explicit-any": "error",
+    "typescript/ban-ts-comment": "error",
+    "typescript/no-floating-promises": "error",
+    "typescript/no-misused-promises": "error",
+    "eslint/eqeqeq": ["error", "smart"],
+    "eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.tsx"],
+      "plugins": ["typescript", "unicorn", "oxc", "react", "jsx-a11y"],
+      "rules": {
+        "react/jsx-key": "error",
+        "react/jsx-no-duplicate-props": "error",
+        "jsx-a11y/alt-text": "error",
+        "jsx-a11y/aria-props": "error",
+        "jsx-a11y/aria-proptypes": "error"
+      }
+    }
+  ],
+  "ignorePatterns": [
+    "dist/**",
+    "coverage/**",
+    "artifacts/**",
+    "apps/web/public/engines/**",
+    "node_modules/**"
+  ]
+}
