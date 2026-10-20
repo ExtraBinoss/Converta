@@ -26,9 +26,9 @@ test("les métadonnées initiales et la carte PNG sont prêtes au partage", asyn
   const response = await request.get("/");
   const html = await response.text();
   expect(html).toContain('property="og:image"');
-  expect(html).toContain("https://converta.plinka.eu/social/converta.png");
+  expect(html).toContain("https://converta.plinka.eu/social/converta-en.png");
   expect(html).toContain('name="twitter:card" content="summary_large_image"');
-  const image = await request.get("/social/converta.png");
+  const image = await request.get("/social/converta-en.png");
   expect(image.ok()).toBe(true);
   const bytes = await image.body();
   expect([bytes.readUInt32BE(16), bytes.readUInt32BE(20)]).toEqual([1200, 630]);

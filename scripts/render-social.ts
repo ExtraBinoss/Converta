@@ -1,7 +1,7 @@
 import { chromium } from "@playwright/test";
 import { preview } from "vite";
 import { createServer } from "node:http";
-import { readFile, writeFile, mkdir, stat } from "node:fs/promises";
+import { readFile, writeFile, mkdir, stat, copyFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 const root = fileURLToPath(new URL("../", import.meta.url));
 const directory = `${root}artwork/social/`;
@@ -16,13 +16,14 @@ try {
   const page = await browser.newPage({
     viewport: { width: 1200, height: 650 },
     deviceScaleFactor: 1,
-    locale: "fr-FR",
+    locale: "en-US",
     colorScheme: "light",
     reducedMotion: "reduce",
   });
   await page.route("https://api.github.com/**", (route) =>
     route.fulfill({ json: { stargazers_count: 0 } }),
   );
+  await page.addInitScript(() => localStorage.setItem("converta.language", "en"));
   await page.goto("http://127.0.0.1:5503");
   const theme = await page.evaluate(() => {
     const s = getComputedStyle(document.documentElement);
@@ -46,9 +47,9 @@ try {
     }
   }, svg);
   await page.locator('input[type="file"]').setInputFiles([
-    { name: "Rivage.png", mimeType: "image/png", buffer: Buffer.from(png, "base64") },
+    { name: "Coast.png", mimeType: "image/png", buffer: Buffer.from(png, "base64") },
     {
-      name: "Escapade.webm",
+      name: "Escape.webm",
       mimeType: "video/webm",
       buffer: await readFile(`${root}tests/fixtures/sample.webm`),
     },
@@ -58,12 +59,16 @@ try {
       buffer: await readFile(`${root}tests/fixtures/tone.wav`),
     },
   ]);
-  await page.getByRole("combobox", { name: "Format pour Rivage.png" }).click();
+  await page.getByRole("combobox", { name: "Format for Coast.png" }).click();
   await page.getByRole("option", { name: "WebP", exact: true }).click();
-  await page.getByRole("button", { name: "Convertir 3 fichiers", exact: true }).click();
-  await page.waitForFunction(() => document.querySelectorAll(".download-button").length === 3, {
-    timeout: 45000,
-  });
+  await page.getByRole("button", { name: "Convert 3 files", exact: true }).click();
+  await page.waitForFunction(
+    () => document.querySelectorAll(".download-button").length === 3,
+    undefined,
+    {
+      timeout: 45000,
+    },
+  );
   await page.evaluate(async () => {
     await document.fonts.ready;
     await Promise.all([...document.images].map((img) => img.decode()));
@@ -129,8 +134,9 @@ try {
     await document.fonts.ready;
     await Promise.all([...document.images].map((image) => image.decode()));
   });
-  const output = `${root}apps/web/public/social/converta.png`;
+  const output = `${root}apps/web/public/social/converta-en.png`;
   await page.screenshot({ path: output, animations: "disabled" });
+  await copyFile(output, `${root}apps/web/public/social/converta.png`);
   console.log(`Social image: 1200 × 630 · ${Math.round((await stat(output)).size / 1024)} KiB`);
 } finally {
   await browser.close();

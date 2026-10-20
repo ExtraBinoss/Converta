@@ -2,7 +2,7 @@
 
 L’outil de conversion Plinka. Application statique : images, vidéo et audio sont traités **dans le navigateur**, sans upload, API de conversion ni backend.
 
-![Converta](apps/web/public/social/converta.png)
+![Converta](apps/web/public/social/converta-en.png)
 
 ## Démarrer en local
 
@@ -94,7 +94,7 @@ Le bouton GitHub en haut à droite révèle le nombre réel d’étoiles au surv
 
 ## Image de partage
 
-`artwork/social/index.html` compose une carte de 1 200 × 630 px avec le vrai logo, les fontes et couleurs locales, et une capture de trois fichiers réellement convertis par Converta. Le domaine et une icône globe apparaissent en bas à droite. Les métadonnées Open Graph/Twitter sont présentes dans le HTML initial.
+`artwork/social/index.html` compose une carte en anglais de 1 200 × 630 px avec le vrai logo, les fontes et couleurs locales, et une capture de trois fichiers réellement convertis par Converta. Le domaine et une icône globe apparaissent en bas à droite. Les métadonnées Open Graph/Twitter sont présentes dans le HTML initial.
 
 ```sh
 bun run build
@@ -102,4 +102,4 @@ bun run social:render
 bun run build
 ```
 
-Le second build intègre `apps/web/public/social/converta.png`. Le script utilise le port 5503 temporairement et conserve la capture de l’interface dans `artwork/social/assets/`. Il ne génère aucune image par IA et ne nécessite aucun service distant. Le mode de démonstration a été retiré du code de l’application.
+Le second build intègre `apps/web/public/social/converta-en.png`. Le script utilise le port 5503 temporairement et conserve la capture de l’interface dans `artwork/social/assets/`. Il ne génère aucune image par IA et ne nécessite aucun service distant. Le mode de démonstration a été retiré du code de l’application.
